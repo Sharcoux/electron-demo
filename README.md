@@ -3,6 +3,6 @@
 To reproduce the bug, run:
 
 `yarn install`
-`yarn electron`
+`yarn build-electron`
 
-Then press the `start` button
+Then run the exe file on windows environment
