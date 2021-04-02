@@ -1,12 +1,12 @@
 require('hazardous')
-const { ipcMain, systemPreferences, app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require('electron')
 const path = require('path')
 
 let mainWindow
 const isDev = process.env.node_env === 'development'
 
-// const voskServiceRegister = require('./voskServiceIpc')
-// voskServiceRegister()
+const voskServiceRegister = require('./voskServiceIpc')
+voskServiceRegister()
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -17,7 +17,7 @@ function createWindow () {
   mainWindow.loadURL(
     isDev
       ? 'http://localhost:9000'
-      : `file://${path.join(__dirname, 'build/index.html')}`
+      : `file://${path.join(__dirname, '../build/index.html')}`
   )
   mainWindow.on('closed', () => (mainWindow = null))
 }
@@ -29,14 +29,6 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
-
-// Request for authorization to use microphone
-ipcMain.on('activate-microphone', (event) => {
-  systemPreferences
-    .askForMediaAccess('microphone')
-    .then((result) => event.reply('activate-microphone-response', result))
-})
-
 
 app.on('activate', () => {
   if (mainWindow === null) {

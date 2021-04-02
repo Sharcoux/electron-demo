@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-const { ipcRenderer } = global.require('electron')
+import App from './App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <button onClick={() => ipcRenderer.send('activate-microphone')}>Start</button>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
