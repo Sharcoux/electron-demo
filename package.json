@@ -6,15 +6,23 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "electron": "^10.4.2",
+    "extendable-media-recorder": "^6.1.53",
+    "extendable-media-recorder-wav-encoder": "^7.0.47",
+    "hazardous": "^0.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "vosk": "^0.3.24",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "preelectron": "npm run build",
+    "electron": "rm -rf dist && NODE_ENV=development electron electron.js",
+    "build-electron": "npm run build && rm -rf packages && electron-builder -l",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -34,5 +42,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "homepage": "./",
+  "main": "electron.js",
+  "devDependencies": {
+    "electron-builder": "^22.10.5",
+    "webpack-cli": "^4.6.0"
   }
 }
