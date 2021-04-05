@@ -5,8 +5,7 @@ const path = require('path')
 let mainWindow
 const isDev = process.env.node_env === 'development'
 
-const voskServiceRegister = require('./voskServiceIpc')
-voskServiceRegister()
+require('ffi-napi');
 
 function createWindow () {
   mainWindow = new BrowserWindow({

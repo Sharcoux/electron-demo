@@ -3,22 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "extendable-media-recorder": "^6.1.53",
-    "extendable-media-recorder-wav-encoder": "^7.0.47",
+    "ffi-napi": "^4.0.3",
     "hazardous": "^0.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "vosk": "^0.3.24"
+    "react-scripts": "4.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "preelectron": "NODE_ENV=development ./downloadLanguages.sh && npm run build",
-    "prebuild-electron": "./downloadLanguages.sh && npm run build",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron": "NODE_ENV=development && npm run build",
+    "prebuild-electron": "npm run build",
     "electron": "rm -rf dist && electron electron.js",
-    "build-electron": "npm run build && rm -rf dist && electron-builder -wl",
+    "build-electron": "rm -rf dist && electron-builder -w",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -33,27 +32,6 @@
     "electron": "^10.4.2",
     "electron-builder": "^22.10.5",
     "webpack-cli": "^4.6.0"
-  },
-  "build": {
-    "extraResources": [
-      "node_modules/at-least-node/**/*",
-      "node_modules/builder-util-runtime/**/*",
-      "node_modules/debug/**/*",
-      "node_modules/ffi-napi/**/*",
-      "node_modules/fs-extra/**/*",
-      "node_modules/get-symbol-from-current-process-h/**/*",
-      "node_modules/get-uv-event-loop-napi-h/**/*",
-      "node_modules/graceful-fs/**/*",
-      "node_modules/jsonfile/**/*",
-      "node_modules/ms/**/*",
-      "node_modules/node-addon-api/**/*",
-      "node_modules/node-gyp-build/**/*",
-      "node_modules/ref-napi/**/*",
-      "node_modules/ref-struct-di/**/*",
-      "node_modules/sax/**/*",
-      "node_modules/universalify/**/*",
-      "models/**/*"
-    ]
   },
   "browserslist": {
     "production": [
